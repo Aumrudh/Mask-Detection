@@ -1,0 +1,157 @@
+{% load static %}
+<html>
+<!-- Styles -->
+
+<h1><center>Eagle Shack</center></h1>
+ <style>
+  body{
+  
+}
+   .imgContainer{
+    position: absolute;
+    top:80px;
+        border: 3px;
+       border-style: solid;
+  }
+  .imgContainer1{
+    position: absolute;
+    bottom: 10px;
+    border: 3px;
+       border-style: solid;
+  }
+  .imgleft{
+    position: absolute;
+  }
+  .textleft{
+    position: absolute;
+    bottom: 295px
+  }
+  h1{
+    font-family: Pristina;
+  }
+  .beftext{
+    position: absolute;
+    top: 18px;
+  }
+  .bord{
+    border width: : 3px;
+    border-style: solid;
+  }
+  </style>
+ 
+    <div class="beftext">
+      <h1>Before Processing</h1>
+    </div>
+    <div class="imgContainer">
+        <img src="{% static 'login/images/inp.jpg'%}" height="300" width="700">
+    </div>
+   <div class="textleft">
+       <h1>After Processing</h1>
+   </div>
+ 
+    <div class="imgContainer1">    
+      
+      <img src="{% static 'login/images/res.jpg'%}" height="300" width="700" >
+   </div>
+
+<style>
+  #leftbox { 
+                position: absolute;
+                top:200px;
+              
+                margin-left: 750px;
+                 
+              }
+  .split {
+  height: 100%;
+  width: 60%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+/* Control the left side */
+.left {
+  left: 0;
+  background-color: #111;
+}
+
+.centered {
+  position: absolute;
+  bottom:300px;
+  
+}
+.pietext{
+  position: absolute;
+  right: 385px;
+
+}
+</style>
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">      </script>  
+
+        <script >
+      $(document).ready(function(){
+  $("#pre").click(function(){
+
+    $("#chart_div").hide();
+  });  
+});
+    </script>
+
+<!-- Resources -->
+
+  <script type="text/javascript" src="https://www.google.com/jsapi">
+  document.body.style.backgroundImage = "url('{% static "login/images/bg.jpg"%}')";
+</script>
+    <script >
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['Mask',     {{Mask}} ],
+          ['No Mask',      {{Nomask}}],
+          ['Social Distancing',  {{a}}],
+          ['Social Distance Violation', {{b}}],
+        ]);
+       
+        
+        var options = {
+          title: '',
+          slices: {0: {color: '#4bb140'}, 1:{color: '#ff0000'}, 2:{color: '#2d7226'}, 3: {color: '#c81717'}}
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+
+        chart.draw(data, options);
+      }
+    </script>
+
+<div id=leftbox>
+{% block content %} 
+
+
+<body  >
+  <center><p><b>Prediction Result</b><br>{{out}}</p></center>
+    <div id="chart_div" style="width: 600px; height: 300px;"></div>
+    
+
+<div style="height:200px;">
+
+<div id="xx" >
+  <input type="hidden" name="mask" value={{Mask}}>
+    <input type="hidden" name="nomask" value={{Nomask}}>
+      <input type="hidden" name="a" value={{a}}>
+        <input type="hidden" name="b" value={{b}}>
+              <input type="hidden" name="age" value={{age}}>
+<div>
+</form>
+</div>
+
+  </body>
+  </html>
+
+{% endblock %} 

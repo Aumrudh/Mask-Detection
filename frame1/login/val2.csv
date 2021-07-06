@@ -1,0 +1,58 @@
+Age,Mask/No mask,Social Distance Violation,Covid
+13,Mask,No,No
+18,Mask,Yes,No
+15,No mask,No,No
+10,No mask,Yes,Yes
+35,Mask,No,No
+27,Mask,Yes,No
+32,No mask,No,No
+26,No mask,Yes,Yes
+48,Mask,No,No
+52,Mask,Yes,Yes
+46,No mask,No,Yes
+65,No mask,Yes,Yes
+12,Mask,No,No
+17,Mask,No,No
+14,Mask,No,No
+16,Mask,No,No
+11,Mask,Yes,No
+19,Mask,Yes,No
+15,Mask,Yes,No
+32,Mask,No,No
+21,Mask,No,No
+24,Mask,No,No
+26,No mask,Yes,Yes
+22,No mask,Yes,Yes
+38,No mask,Yes,Yes
+33,Mask,Yes,No
+23,Mask,Yes,No
+36,Mask,Yes,No
+44,Mask,No,No
+42,Mask,No,No
+43,Mask,No,No
+55,No mask,No,Yes
+52,No mask,No,Yes
+58,No mask,No,Yes
+62,No mask,Yes,Yes
+67,No mask,Yes,Yes
+66,No mask,Yes,Yes
+61,Mask,Yes,Yes
+68,Mask,Yes,No
+72,Mask,No,No
+64,No mask,No,Yes
+19,Mask,No,No
+19,Mask,Yes,No
+19,No mask,No,No
+19,No mask,Yes,Yes
+21,Mask,No,No
+21,Mask,Yes,No
+21,No mask,No,No
+21,No mask,Yes,Yes
+57,Mask,No,No
+58,Mask,Yes,No
+53,No mask,No,No
+59,No mask,Yes,Yes
+61,Mask,No,No
+62,Mask,Yes,Yes
+63,No mask,No,Yes
+61,No mask,Yes,Yes

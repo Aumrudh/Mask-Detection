@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+.left
+{
+    top:0px;
+}
+  h4{
+    color: white;
+  }
+    h1{
+    color: white;
+  }
+  body {
+    background:rgba(40,57,101,.9);
+   
+   font-family: "Muli";
+}
+input[type="file"] {
+    display: none;
+    width: 1000px;
+}
+input[type="submit"] {
+    display: none;
+    width: 100px;
+}
+
+ div {
+    position: static;
+   
+}
+ div a {
+   width: 100%;
+   max-width: 300px;
+   height: 54px;
+   padding: 8px;
+   font-size: 0.8rem;
+   font-weight: 900;
+   color:  #808080;
+   text-align: center;
+   text-transform: uppercase;
+   text-decoration: none;
+   position: static;
+   margin: 5px 0;
+}
+ div a.white:hover > p {
+   color: #ece8e1;
+}
+ div a.white > p {
+   background: #ece8e1;
+   color: #0f1923;
+}
+ div a.white > p span.base {
+   border: 4px solid transparent;
+}
+ div a.transparent:hover > p {
+   color: #ece8e1;
+}
+ div a.transparent:hover > p span.text {
+   box-shadow: 0 0 0 1px #ece8e1;
+}
+ div a.transparent > p {
+   background: #0f1923;
+   color: #ece8e1;
+}
+ div a.transparent > p span.base {
+   border: 1px solid #ece8e1;
+}
+ div a:after, div a:before {
+     visibility: hidden;
+   content: "  ";
+   width: 100px;
+   position: static;
+   height: 8px;
+   background: #1161ee;
+   left: 0;
+   top: 50%;
+   transform: translateY(-50%);
+}
+
+ div a p {
+   margin: 0;
+   height: 45px;
+   line-height: 50px;
+   box-sizing: border-box;
+   z-index: 1;
+   left: 0;
+   width: 100%;
+   position: relative;
+   overflow: hidden;
+}
+ div a p span.base {
+   box-sizing: border-box;
+   position: absolute;
+   z-index: 0;
+   width: 100%;
+   height: 100%;
+   left: 0;
+   border: 1px solid white;
+}
+ div a p span.base:before {
+   content: "";
+   width: 2px;
+   height: 2px;
+   left: -1px;
+   top: -1px;
+   background: #1161ee;
+   position: absolute;
+   transition: 1.5s ease-out all;
+}
+ div a p span.bg {
+   left: -5%;
+   position: absolute;
+   background: #1161ee;
+   width: 0;
+   height: 100%;
+   z-index: 3;
+   transition: 1.5s ease-out all;
+   transform: skewX(-10deg);
+}
+ div a p span.text {
+   z-index: 4;
+   width: 100%;
+   height: 100%;
+   position: absolute;
+   left: 0;
+   top: 0;
+}
+ div a p span.text:after {
+   content: "";
+   width: 40px;
+   height: 4px;
+   right: 0;
+   bottom: 0;
+   background: white;
+   position: absolute;
+   transition: .1s ease-out all;
+   z-index: 5;
+}
+ div a:hover {
+   color: white;
+}
+ div a:hover span.bg {
+   width: 110%;
+}
+ div a:hover span.text:after {
+   background: white;
+}
+ 
+</style>
+<head>
+<meta charset="utf-8">
+<title>Upload</title>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+    function previewFile(input){
+        var file = $("input[type=file]").get(0).files[0];
+ 
+        if(file){
+            var reader = new FileReader();
+ 
+            reader.onload = function(){
+                $("#previewImg").attr("src", reader.result);
+            }
+ 
+            reader.readAsDataURL(file);
+        }
+    }
+    
+</script>
+</head> 
+{% block content %} 
+
+<body>
+    <h1><center>Eagle Shack</center></h1>
+    <div>
+
+    <form action="add" enctype="multipart/form-data"  method="post">
+   
+        
+        	{% csrf_token %}
+        <a href="#"> <p><span class="bg"></span><span class="base"></span><span class="text"> <label for="name" >Upload File       </label>  </span>  </p> </a>
+        <input type="file"  name="document" onchange="previewFile(this);" name="name" id='name' required>
+        
+
+
+        
+           
+
+         <a href="#" > <p><span class="bg"></span><span class="base"></span><span class="text"> <label for="ana" >Analyze                 </label>  </span>  </p></a>
+         <input type="submit" type="hidden" value="Analyse" name="ana" id='ana'>
+        
+
+
+        
+    </form>
+
+    <form action="index" enctype="multipart/form-data"  method="post">
+   
+        
+            {% csrf_token %}
+              <a href="#"> <p><span class="bg"></span><span class="base"></span><span class="text"> <label for="vid" >Upload Video</label>  </span>  </p> </a>
+            <input type="file"  name="document2" name="vid" id='vid' class= required>
+        
+
+      
+    <script type="text/javascript">
+       $(document).ready(function() { 
+            $('input[type="file"]').change(function(e) { 
+                var geekss = e.target.files[0].name; 
+                $("h4").text(geekss + ' is the selected file.'); 
+  
+            }); 
+        }); 
+    </script> 
+              <a href="#"> <p><span class="bg"></span><span class="base"></span><span class="text"> <label for="sub" >Submit</label>  </span>  </p>  </a>    
+           <input type="submit"type="hidden" value="Submit" name="sub" id='sub'>
+        
+    
+    
+    </form>
+    <h4><!-- Slected file will get here --></h4> 
+    <img id="previewImg" src="/examples/images/transparent.png" alt="Upload an image"  height="300" width="700">
+    
+    </div>
+
+
+</body>
+</html>
+{% endblock %} 

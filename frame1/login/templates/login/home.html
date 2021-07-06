@@ -1,0 +1,93 @@
+<html>
+  <head>
+    <title>Video Stream</title>
+  </head>
+
+  <body>
+    <h1>Video Stream </h1>
+    <div style="left:40px"> 
+    <img src="{% url 'video_feed' %}"></div>
+     
+    <div id="data">
+      <script>
+      	function pie () {
+      	let mask=arguments[0];
+        let nomask=arguments[1];
+      	let sv=arguments[2];
+      	let nsv=arguments[3];
+
+		var chart = new CanvasJS.Chart("chartContainer", {
+			exportEnabled: true,
+			animationEnabled: false,
+			title:{
+				text: "Predictions"
+			},
+			legend:{
+				cursor: "pointer",
+			},
+			data: [{
+				type: "pie",
+				showInLegend: true,
+				toolTipContent: "{name}: <strong>{y}%</strong>",
+				indexLabel: "{name} - {y}%",
+				dataPoints: [
+					{ y: mask, name: "NO MASK", exploded: true },
+					{ y: nomask, name: "MASK" },
+					{ y: sv, name: "SOCIAL DISTANCE VIOLATION" },
+					{ y: nsv, name: "SOCIAL DISTANCING" },
+
+				]
+			}]
+		});
+		chart.render();
+		}
+
+
+        let xmlhttp = new XMLHttpRequest();
+        let p;
+        var res = "0 0 0 0";
+        function updateProgress (oEvent) {
+            
+            p = document.createElement('p');
+            let text = document.createTextNode(oEvent.target.responseText);
+            var res = oEvent.target.responseText.split(" ");
+            pie(res[0],res[1],res[2],res[3]);
+          
+
+
+            console.log(oEvent.target.responseText);
+            p.appendChild(text);
+            document.getElementById('data').appendChild(p);
+        }
+
+        function deleteProgress(oEvent){
+        		data.innerHTML = "";
+			
+        }
+    	let i = 0;
+
+		function increment() {
+		  i++;
+		 url = '{% url "test_stream" %}';
+     
+        xmlhttp.addEventListener('load', updateProgress, false);
+        xmlhttp.open("get", url, true);
+        xmlhttp.send();
+        
+
+	        xmlhttp.addEventListener('progress', deleteProgress, false);
+	        xmlhttp.open("get", url, true);
+	        xmlhttp.send();
+        
+
+		  console.log(i);
+		}
+
+		const incrementTimer = setInterval(increment, 1000);
+
+    </script></div>
+   
+ <div id="chartContainer" style="height: 370px;left:900px;width:500px;bottom:300px;position: fixed;" ></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+  </body>
+</html>
